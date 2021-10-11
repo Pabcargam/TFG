@@ -2,7 +2,7 @@ import React from 'react';
 
 const Activate = () => (
     <div>
-        Activacion de Cuenta
+        Activación de Cuenta
     </div>
 );
 
