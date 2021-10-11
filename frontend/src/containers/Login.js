@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { login } from '../actions/auth'
 
-const Login = () => {
+const Login = ({ login }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '' 
@@ -15,7 +16,7 @@ const Login = () => {
     const onSubmit = e => {
         e.preventDefault();
 
-        // login(email, password)
+        login(email, password);
     };
 
     // Usuario autenticado?
@@ -27,7 +28,7 @@ const Login = () => {
             <h1>Inicio de Sesion</h1>
             <p>Inicia sesion en tu cuenta</p>
             <form onSubmit={e => onSubmit(e)}>
-                <div className='form-group'>
+                <div className='form-group, mb-2'>
                     <input
                         className='form-control'
                         type='email'
@@ -38,7 +39,7 @@ const Login = () => {
                         required
                     />
                 </div>
-                <div className='form-group'>
+                <div className='form-group, mb-3'>
                     <input
                         className='form-control'
                         type='password'
@@ -53,10 +54,10 @@ const Login = () => {
                 <button className='btn btn-primary' type='submit'>Iniciar Sesion</button>
             </form>
             <p className='mt-3'>
-                ¿No tienes una cuenta aun? <Link to='/signup'>¡Registrate!</Link>
+                ¿No tienes una cuenta aun? <Link to='/signup'>¡Registrarse!</Link>
             </p>
             <p className='mt-3'>
-                ¿Has olvidado tu contraseña? <Link to='/reset-password'>Cambia tu contraseña</Link>
+                ¿Has olvidado tu contraseña? <Link to='/reset-password'>Cambiar Contraseña</Link>
             </p>
         </div>
     );
@@ -66,4 +67,4 @@ const Login = () => {
     // isAuthenticated: state.auth.isAuthenticated
 // });
 
-export default connect(null, {  })(Login);
+export default connect(null, { login })(Login);
