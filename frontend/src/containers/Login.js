@@ -25,8 +25,8 @@ const Login = ({ login }) => {
 
     return (
         <div className='container mt-5'>
-            <h1>Inicio de Sesion</h1>
-            <p>Inicia sesion en tu cuenta</p>
+            <h1>Inicio de Sesión</h1>
+            <p>Inicia sesión en tu cuenta</p>
             <form onSubmit={e => onSubmit(e)}>
                 <div className='form-group, mb-2'>
                     <input
@@ -51,7 +51,7 @@ const Login = ({ login }) => {
                         required
                     />
                 </div>
-                <button className='btn btn-primary' type='submit'>Iniciar Sesion</button>
+                <button className='btn btn-primary' type='submit'>Iniciar Sesión</button>
             </form>
             <p className='mt-3'>
                 ¿No tienes una cuenta aun? <Link to='/signup'>¡Registrarse!</Link>
