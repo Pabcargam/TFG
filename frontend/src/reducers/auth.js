@@ -5,6 +5,10 @@ import {
     USER_LOADED_FAIL,
     AUTHENTICATED_SUCCESS,
     AUTHENTICATED_FAIL,
+    PASSWORD_RESET_SUCCESS,
+    PASSWORD_RESET_FAIL,
+    PASSWORD_RESET_CONFIRM_SUCCESS,
+    PASSWORD_RESET_CONFIRM_FAIL,
     LOGOUT
 } from '../actions/types';
 
@@ -64,6 +68,16 @@ export default function(state = initialState, action) {
                 isAuthenticated: false,
                 user: null
             }
+            
+        // This is just to check that the correct type is being dispatched when doing the action with the tool ReduxDevTools
+        case PASSWORD_RESET_SUCCESS:
+        case PASSWORD_RESET_FAIL:
+        case PASSWORD_RESET_CONFIRM_SUCCESS:
+        case PASSWORD_RESET_CONFIRM_FAIL:
+            return {
+                ...state
+            }
+
         default:
             return state
     }
