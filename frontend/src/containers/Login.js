@@ -32,7 +32,7 @@ const Login = ({ login, isAuthenticated }) => {
                     <input
                         className='form-control'
                         type='email'
-                        placeholder='Email'
+                        placeholder='Email*'
                         name='email'
                         value={email}
                         onChange={e => onChange(e)}
@@ -43,7 +43,7 @@ const Login = ({ login, isAuthenticated }) => {
                     <input
                         className='form-control'
                         type='password'
-                        placeholder='Password'
+                        placeholder='Password*'
                         name='password'
                         value={password}
                         onChange={e => onChange(e)}
