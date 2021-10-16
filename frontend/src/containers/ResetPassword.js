@@ -33,7 +33,7 @@ const ResetPassword = ({ reset_password }) => {
                     <input
                         className='form-control'
                         type='email'
-                        placeholder='Email'
+                        placeholder='Email*'
                         name='email'
                         value={email}
                         onChange={e => onChange(e)}
