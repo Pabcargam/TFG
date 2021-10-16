@@ -150,6 +150,12 @@ STAITCFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
+# Email Domain and Site Name configuration
+
+DOMAIN = ('localhost:3000') 
+SITE_NAME = ('Nelium Analytics') 
+
+
 # Djoser config
 # https://djoser.readthedocs.io/en/latest/settings.html
 

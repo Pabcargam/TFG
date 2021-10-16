@@ -40,7 +40,7 @@ const ResetPassword = ({ reset_password }) => {
                         required
                     />
                 </div>
-                <button className='btn btn-primary' type='submit'>Reset Password</button>
+                <button className='btn btn-primary' type='submit'>Enviar Email</button>
             </form>
         </div>
     );

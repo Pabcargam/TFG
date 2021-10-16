@@ -30,20 +30,22 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
 
     return (
         <div className='container mt-5'>
+            <h1>Restablecimiento de Contraseña:</h1>
+            <p>Escriba la nueva contraseña deseada dos veces</p>
             <form onSubmit={e => onSubmit(e)}>
-            <div className='form-group'>
-                    <input
-                        className='form-control'
-                        type='password'
-                        placeholder='New Password'
-                        name='new_password'
-                        value={new_password}
-                        onChange={e => onChange(e)}
-                        minLength='7'
-                        required
-                    />
+                <div className='form-group mb-2'>
+                        <input
+                            className='form-control'
+                            type='password'
+                            placeholder='New Password'
+                            name='new_password'
+                            value={new_password}
+                            onChange={e => onChange(e)}
+                            minLength='7'
+                            required
+                        />
                 </div>
-                <div className='form-group'>
+                <div className='form-group mb-3'>
                     <input
                         className='form-control'
                         type='password'
@@ -55,7 +57,7 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
                         required
                     />
                 </div>
-                <button className='btn btn-primary' type='submit'>Reset Password</button>
+                <button className='btn btn-primary' type='submit'>Restablecer Contraseña</button>
             </form>
         </div>
     );
