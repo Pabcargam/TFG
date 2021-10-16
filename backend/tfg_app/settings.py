@@ -150,6 +150,12 @@ STAITCFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
+# Email Domain and Site Name configuration
+
+DOMAIN = ('localhost:3000') 
+SITE_NAME = ('Nelium Analytics') 
+
+
 # Djoser config
 # https://djoser.readthedocs.io/en/latest/settings.html
 
@@ -161,6 +167,7 @@ DJOSER = {
     'SEND_CONFIRMATION_EMAIL': True,
     'SEND_ACTIVATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': 'activate/{uid}/{token}',
