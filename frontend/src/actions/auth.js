@@ -101,13 +101,13 @@ export const login = (email, password) => async dispatch => {
 
         dispatch(load_user());
 
-        dispatch(setAlert('Authenticated successfully', 'success'));
+        dispatch(setAlert('Inicio de sesión exitoso', 'success'));
     } catch (err) {
         dispatch({
             type: LOGIN_FAIL
         });
 
-        dispatch(setAlert('Error Authenticating', 'error'));
+        dispatch(setAlert('Email/Contraseña erróneos', 'error'));
     }
 };
 
@@ -128,6 +128,8 @@ export const signup = (name, email, password, re_password) => async dispatch => 
                 type: SIGNUP_SUCCESS,
                 payload: res.data
             });
+
+            dispatch(setAlert('Registro de cuenta exitoso', 'success'));
         } catch (err) {
             dispatch({
                 type: SIGNUP_FAIL
@@ -155,6 +157,8 @@ export const verify = (uid, token) => async dispatch => {
         dispatch({
             type: ACTIVATION_SUCCESS,
         });
+
+        dispatch(setAlert('Activación de cuenta exitosa', 'success'));
     } catch (err) {
         dispatch({
             type: ACTIVATION_FAIL
@@ -177,6 +181,7 @@ export const reset_password = (email) => async dispatch => {
         dispatch({
             type: PASSWORD_RESET_SUCCESS
         });
+        dispatch(setAlert('Solicitud de cambio de contraseña exitosa', 'success'));
     } catch (err) {
         dispatch({
             type: PASSWORD_RESET_FAIL
@@ -199,6 +204,8 @@ export const reset_password_confirm = (uid, token, new_password, re_new_password
         dispatch({
             type: PASSWORD_RESET_CONFIRM_SUCCESS
         });
+
+        dispatch(setAlert('Cambio de contraseña exitoso', 'success'));
     } catch (err) {
         dispatch({
             type: PASSWORD_RESET_CONFIRM_FAIL
@@ -210,4 +217,6 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     });
+
+    dispatch(setAlert('Cierre de sesión exitoso', 'success'));
 };

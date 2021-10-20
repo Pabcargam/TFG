@@ -25,7 +25,7 @@ const Signup = ({ signup, setAlert, isAuthenticated }) => {
         if (password === re_password) {
             setAccountCreated(true);
         }else {
-            setAlert('Password do not match', 'error')
+            setAlert('Contraseñas no idénticas', 'error');
         }
     };
 

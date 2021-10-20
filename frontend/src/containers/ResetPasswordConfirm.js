@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reset_password_confirm } from '../actions/auth';
+import { setAlert } from '../actions/alert';
 
-const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
+const ResetPasswordConfirm = ({ match, setAlert, reset_password_confirm }) => {
     const [requestSent, setRequestSent] = useState(false);
     const [formData, setFormData] = useState({
         new_password: '',
@@ -21,7 +22,12 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
         const token = match.params.token;
 
         reset_password_confirm(uid, token, new_password, re_new_password);
-        setRequestSent(true);
+
+        if (new_password === re_new_password) {
+            setRequestSent(true);
+        }else {
+            setAlert('Contraseñas no idénticas', 'error');
+        }
     };
 
     if (requestSent) {
@@ -63,4 +69,4 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
     );
 };
 
-export default connect(null, { reset_password_confirm })(ResetPasswordConfirm);
+export default connect(null, { reset_password_confirm, setAlert })(ResetPasswordConfirm);
