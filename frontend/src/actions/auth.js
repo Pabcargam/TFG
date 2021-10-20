@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlert } from './alert';
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
@@ -99,10 +100,14 @@ export const login = (email, password) => async dispatch => {
         });
 
         dispatch(load_user());
+
+        dispatch(setAlert('Authenticated successfully', 'success'));
     } catch (err) {
         dispatch({
             type: LOGIN_FAIL
-        })
+        });
+
+        dispatch(setAlert('Error Authenticating', 'error'));
     }
 };
 
@@ -153,7 +158,7 @@ export const verify = (uid, token) => async dispatch => {
     } catch (err) {
         dispatch({
             type: ACTIVATION_FAIL
-        })
+        });
     }
 };
 
