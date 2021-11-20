@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Layout from './hocs/Layout';
+import Analytics from './containers/Analytics';
 
 const App = () => (
     <Provider store={store}>
@@ -25,6 +26,7 @@ const App = () => (
                     <Route exact path='/reset-password' component={ResetPassword} />
                     <Route exact path='/password/reset/confirm/:uid/:token' component={ResetPasswordConfirm} />
                     <Route exact path='/activate/:uid/:token' component={Activate} />
+                    <Route exact path='/analytics' component={Analytics} />
                     <Route component={NotFound} />
                 </Switch>
             </Layout>
