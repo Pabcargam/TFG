@@ -9,7 +9,7 @@ const Home = ({ isAuthenticated }) => {
     );
 
     const autenticados = () => (
-        <a className='btn btn-primary btn-lg' href='#!'>Analíticas</a>
+        <Link className='btn btn-primary btn-lg' to='/analytics'>Analíticas</Link>
     );
 
     return (
