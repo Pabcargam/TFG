@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 
 const Analytics = () => {
@@ -54,7 +54,7 @@ const Analytics = () => {
             yesterdayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() - 1);
         }
 
-        var lastHour = today.getHours() - 24;
+        var lastHour = 24 - today.getHours();
 
 
         // --- HEADERS ELECTRICITY API REQUESTS --- //
@@ -106,7 +106,7 @@ const Analytics = () => {
             };
 
         const mean_inner_temp = {
-            "query": "SELECT MEAN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 12h",
+            "query": "SELECT MEAN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 6h",
             "type": "influxql",
             "bucket": "sensors"
             };
@@ -118,7 +118,7 @@ const Analytics = () => {
             };
 
         const mean_outter_temp = {
-            "query": "SELECT MEAN(outside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 12h",
+            "query": "SELECT MEAN(outside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 6h",
             "type": "influxql",
             "bucket": "sensors"
             };
@@ -234,21 +234,65 @@ const Analytics = () => {
         console.log(currentDate);
         console.log(currentHour);
         console.log(yesterdayDate);
-
     };
+
+
+    // --- AUTO-CALL FUNCTION WHEN RENDERS THE PAGE --- //
+
+    useEffect(() => {
+        getAnalytics();
+    }, [])
+
+
+    // --- MONTHLY SAVED MONEY METHOD --- //
+
+    const getMoneySavedMonthly = () => {
+
+        var dailySave = [];
+
+        if (dailySave.length < 30) {
+            dailySave.push(moneySaved);
+            for(let c = 0; c < dailySave.length; c++) {
+                currentSave += dailySave[c]; 
+            }
+        } 
+        else {
+            dailySave = [];
+            lastMonthSave = currentSave;
+            currentSave = 0;
+            
+        }
+    };
+
+
+    // --- AUTO-CALL FUNCTION WHEN RENDERS THE PAGE --- //
+
+    const DAY_MS = 86400000;
+
+    useEffect(() => {
+    const interval = setInterval(() => {
+        getAnalytics();
+        getMoneySavedMonthly();
+    }, DAY_MS);
+
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+    }, [])
 
 
     // --- POSTPROCESSED VARIABLES --- //
 
+        var currentSave = 0;
+        var lastMonthSave = 0;
+
+
         var maxDate = new Date(maxTime);
         var minDate = new Date(minTime);
-        
 
         var tankDiff = 0;
     
         if (maxDate > minDate) {
             tankDiff = maxTankTemp - minTankTemp;
-        }
+        } 
         else {
             tankDiff = 0;
         }
@@ -276,7 +320,7 @@ const Analytics = () => {
     return (
         <div>
             Hola, obtén tus analíticas clicando en el siguiente botón. 
-            <button onClick={getAnalytics}> Get Analytics </button><br/>
+            <button onClick={getAnalytics}> Actualizar Analíticas</button><br/>
             Temperatura del tanque: {innerTemp}° <br/>
             Media de temperatura del tanque: {meanInnerTemp}° <br/>
             Temperatura de la placa: {outterTemp}°<br/>
@@ -297,7 +341,10 @@ const Analytics = () => {
 
             {timeDiff} <br/>
             {maxDate.getHours()} <br/>
-            {minDate.getHours()}
+            {minDate.getHours()} <br/><br/>
+
+            Dinero ahorrado este mes: {currentSave} <br/>
+            Dinero ahorrado el mes pasado: {lastMonthSave}
 
         </div>
     );
