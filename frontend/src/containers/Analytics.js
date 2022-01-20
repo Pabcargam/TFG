@@ -22,6 +22,12 @@ const Analytics = () => {
         const [lightPriceYesterdayGenTime, setLightPriceYesterdayGenTime] = useState(0);
 
 
+        // --- MONTHLY ENERGY SAVE DATA STATES --- //
+
+        const[currentSave, setCurrentSave] = useState(0);
+        const[lastMonthSave, setLastMonthSave] = useState(0);
+
+
     // --- ELECTRICITY DATA STATES --- //
 
     const[currentLightPrice, setCurrentLightPrice] = useState(0);
@@ -248,24 +254,26 @@ const Analytics = () => {
 
     const getMoneySavedMonthly = () => {
 
-        var dailySave = [];
-
         if (dailySave.length < 30) {
             dailySave.push(moneySaved);
             for(let c = 0; c < dailySave.length; c++) {
-                currentSave += dailySave[c]; 
+                sumCurrentSave += dailySave[c]; 
             }
         } 
         else {
             dailySave = [];
-            lastMonthSave = currentSave;
-            currentSave = 0;
-            
+            sumLastMonthSave = sumCurrentSave;
+            sumCurrentSave = 0;
         }
+        setLastMonthSave(sumLastMonthSave);
+        setCurrentSave(sumCurrentSave);
+
+        console.log(dailySave[0]);
+        console.log(dailySave.length);
     };
 
 
-    // --- AUTO-CALL FUNCTION WHEN RENDERS THE PAGE --- //
+    // --- AUTO-CALL FUNCTION CUMULATIVE SAVED MONEY DAYLY --- //
 
     const DAY_MS = 86400000;
 
@@ -281,28 +289,23 @@ const Analytics = () => {
 
     // --- POSTPROCESSED VARIABLES --- //
 
-        var currentSave = 0;
-        var lastMonthSave = 0;
+        var dailySave = [];
+
+        var sumCurrentSave = 0;
+        var sumLastMonthSave = 0;
 
 
         var maxDate = new Date(maxTime);
         var minDate = new Date(minTime);
 
-        var tankDiff = 0;
-    
-        if (maxDate > minDate) {
-            tankDiff = maxTankTemp - minTankTemp;
-        } 
-        else {
-            tankDiff = 0;
-        }
 
+        var tankDiff = Math.abs(maxTankTemp - minTankTemp);
 
         var energySaved = (300 * tankDiff) * 0.00116222;
         var moneySaved = energySaved * (lightPriceYesterdayGenTime/1000);
 
 
-        var timeDiff = maxDate.getHours() - minDate.getHours();
+        var timeDiff = Math.abs(maxDate.getHours() - minDate.getHours());
         var realPerformance = (((tankDiff/timeDiff) * 300) * 0.00116222);
         var expectedPerformance = (700 * 1.22)/1000;
         var performanceString = '';
@@ -319,8 +322,8 @@ const Analytics = () => {
         
     return (
         <div>
-            Hola, obtén tus analíticas clicando en el siguiente botón. 
-            <button onClick={getAnalytics}> Actualizar Analíticas</button><br/>
+            Hola, obtén tus analíticas clicando en el siguiente botón. <br/>
+            <button onClick={getAnalytics}> Actualizar Analíticas</button><br/><br/>
             Temperatura del tanque: {innerTemp}° <br/>
             Media de temperatura del tanque: {meanInnerTemp}° <br/>
             Temperatura de la placa: {outterTemp}°<br/>
@@ -336,15 +339,16 @@ const Analytics = () => {
 
             Rendimiento de las placas solares: {performanceString} <br/>
             {tankDiff}° <br/>
-            {realPerformance} kW/h <br/>
-            {expectedPerformance} kW/h <br/><br/>
+            {realPerformance.toFixed(3)} kW/h <br/>
+            {expectedPerformance.toFixed(3)} kW/h <br/><br/>
 
             {timeDiff} <br/>
             {maxDate.getHours()} <br/>
-            {minDate.getHours()} <br/><br/>
+            {minDate.getHours()} <br/><br/><br/>
 
-            Dinero ahorrado este mes: {currentSave} <br/>
-            Dinero ahorrado el mes pasado: {lastMonthSave}
+            <button onClick={getMoneySavedMonthly}> Cargar ahorro mensual (1 vez al día)</button><br/><br/>
+            Dinero ahorrado este mes: {currentSave.toFixed(2)} <br/>
+            Dinero ahorrado el mes pasado: {lastMonthSave.toFixed(2)}
 
         </div>
     );
