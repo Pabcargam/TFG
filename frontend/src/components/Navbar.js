@@ -21,7 +21,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
     const linksAutenticados = () => (
         <Fragment>
             <li className='nav-item'>
-                <a className='nav-link' href='#!'>Analíticas</a>
+                <Link className='nav-link' to='/analytics'>Analíticas</Link>
             </li>
             <li className='nav-item'>
                 <a className='nav-link' href='#!' onClick={logout}>Cerrar Sesión</a>

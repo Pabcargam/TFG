@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import '../styles/notFoundStyle.css';
 
 const notFound = () => (
-    <div id="notfound">
-        <div class="notfound">
-            <div class="notfound-404">
+    <div id='notfound'>
+        <div className='notfound'>
+            <div className='notfound-404'>
                 <h1>Oops!</h1>
             </div>
             <h2>404 - Página no encontrada</h2>

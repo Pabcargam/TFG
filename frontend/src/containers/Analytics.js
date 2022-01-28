@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import '../styles/scrollProgressBar.css';
 
 const Analytics = () => {
 
@@ -38,29 +39,32 @@ const Analytics = () => {
     */
 
 
-    const getAnalytics = () => {
+    // --- DATE AND TIME VARIABLES --- //
 
-        // --- DATE AND TIME VARIABLES --- //
+    var today = new Date();
+    var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var currentHour = today.getHours();
 
-        var today = new Date();
-        var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var currentHour = today.getHours();
+    var yesterdayDate = '';
 
-        var yesterdayDate = '';
-
-        if (today.getDate() === 1) {
-            if ((today.getMonth() + 1) === 1){ // El metodo getMonth() solo va de la posicion 0 a la 11, es por ello que deberemos sumarle '1' para que concuerde con el mes actual.
-                yesterdayDate = (today.getFullYear() - 1) + '-' + (today.getMonth() + 12) + '-' + (today.getDate() + 29);
-            }
-            else {
-                yesterdayDate = today.getFullYear() + '-' + today.getMonth() + '-' + (today.getDate() + 29);
-            }
+    if (today.getDate() === 1) {
+        if ((today.getMonth() + 1) === 1){ // El metodo getMonth() solo va de la posicion 0 a la 11, es por ello que deberemos sumarle '1' para que concuerde con el mes actual.
+            yesterdayDate = (today.getFullYear() - 1) + '-' + (today.getMonth() + 12) + '-' + (today.getDate() + 29);
         }
         else {
-            yesterdayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() - 1);
+            yesterdayDate = today.getFullYear() + '-' + today.getMonth() + '-' + (today.getDate() + 29);
         }
+    }
+    else {
+        yesterdayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() - 1);
+    }
 
-        var lastHour = 24 - today.getHours();
+    var lastHour = 24 - today.getHours();
+
+
+    // --- MAIN ANALYTICS METHOD --- //
+
+    const getAnalytics = () => {
 
 
         // --- HEADERS ELECTRICITY API REQUESTS --- //
@@ -161,42 +165,42 @@ const Analytics = () => {
 
         Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', inner_temp, headersDB).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setInnerTemp(response.data.results[0].series[0].values[0][1]);
             }
         );
 
         Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', mean_inner_temp, headersDB).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setMeanInnerTemp(response.data.results[0].series[0].values[0][1].toFixed(1));
             }
         );
 
         Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', outter_temp, headersDB).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setOutterTemp(response.data.results[0].series[0].values[0][1]);
             }
         );
 
         Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', mean_outter_temp, headersDB).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setMeanOutterTemp(response.data.results[0].series[0].values[0][1].toFixed(1));
             }
         );
 
         Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', diff_trigger, headersDB).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setDiffTrigger(response.data.results[0].series[0].values[0][1]);
             }
         );
 
         Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', pump_bool, headersDB).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setPump(response.data.results[0].series[0].values[0][1]);
             }
         );
@@ -206,7 +210,7 @@ const Analytics = () => {
 
             Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', max_tank_temp, headersDB).then(
                 (response) => {
-                    console.log(response);
+                    // console.log(response);
                     setmaxTankTemp(response.data.results[0].series[0].values[0][1]);
                     setMaxTime(response.data.results[0].series[0].values[0][0]);
                 }
@@ -214,7 +218,7 @@ const Analytics = () => {
 
             Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', min_tank_temp, headersDB).then(
                 (response) => {
-                    console.log(response);
+                    // console.log(response);
                     setMinTankTemp(response.data.results[0].series[0].values[0][1]);
                     setMinTime(response.data.results[0].series[0].values[0][0]);
                 }
@@ -225,21 +229,24 @@ const Analytics = () => {
 
         Axios.get('https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real', paramsAPIluzActual, headersAPIluz).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setCurrentLightPrice(response.data.included[0].attributes.values[currentHour].value);
             }
         );
 
         Axios.get('https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real', paramsAPIluzAyer, headersAPIluz).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 setLightPriceYesterdayGenTime(response.data.included[0].attributes.values[11].value);
             }
         );
 
-        console.log(currentDate);
-        console.log(currentHour);
-        console.log(yesterdayDate);
+
+        // --- TERMINAL PRINT OUTS (DEBUGGING) --- //
+
+        // console.log(currentDate);
+        // console.log(currentHour);
+        // console.log(yesterdayDate);
     };
 
 
@@ -268,8 +275,11 @@ const Analytics = () => {
         setLastMonthSave(sumLastMonthSave);
         setCurrentSave(sumCurrentSave);
 
-        console.log(dailySave[0]);
-        console.log(dailySave.length);
+
+        // --- TERMINAL PRINT OUTS (DEBUGGING) --- //
+
+        // console.log(dailySave[0]);
+        // console.log(dailySave.length);
     };
 
 
@@ -319,11 +329,36 @@ const Analytics = () => {
         else {
             performanceString = 'Malo';
         }
+
         
+    // --- HTML CONTENT (VIEW) --- //
+
     return (
-        <div>
-            Hola, obtén tus analíticas clicando en el siguiente botón. <br/>
-            <button onClick={getAnalytics}> Actualizar Analíticas</button><br/><br/>
+        <div id='Analiticas'>
+            <div class="progress-container">
+                <div class="progress-bar" id="myBar"></div>
+            </div>
+            <div className='container'>
+                <div className='jumbotron mt-5'>
+                    <h1 className='display-4'>Tus Analíticas</h1>
+                    <p className='lead'>Conoce todos los datos relevantes de tus placas solares, desde los más simples 
+                                    como su temperatura actual hasta calculos complejos como la cantidad de energia 
+                                    recogida el día anterior y como repercute dicho dato diariamente y mensualmente 
+                                    a tu bolsillo.
+                    </p>
+                    <button onClick={getAnalytics} className='btn btn-primary btn-lg mt-2'>Actualizar Analíticas</button>
+                    <hr classNameName='my-4' />
+                </div>
+
+                <div className='jumbotron mt-5'>
+                    <h1 className='display-6'>Datos de la placas solares</h1>
+                    <p className='lead'>En esta sección podrás encontrar datos recogidos en tiempo real de las placas solares.</p>
+                    
+                    <hr className='my-4' />
+                </div>
+            </div>
+
+            
             Temperatura del tanque: {innerTemp}° <br/>
             Media de temperatura del tanque: {meanInnerTemp}° <br/>
             Temperatura de la placa: {outterTemp}°<br/>
@@ -338,13 +373,14 @@ const Analytics = () => {
             Dinero ahorrado durante el dia de ayer (Para el precio de generación a las 12 del mediodía): {moneySaved.toFixed(2)} € <br/><br/>
 
             Rendimiento de las placas solares: {performanceString} <br/>
-            {tankDiff}° <br/>
-            {realPerformance.toFixed(3)} kW/h <br/>
-            {expectedPerformance.toFixed(3)} kW/h <br/><br/>
+            
+            {/*{tankDiff}° <br/> */}
+            Rendimiento esperado: {expectedPerformance.toFixed(3)} kW/h <br/>
+            Rendimiento real: {realPerformance.toFixed(3)} kW/h <br/><br/>
 
-            {timeDiff} <br/>
+            {/*{timeDiff} <br/>
             {maxDate.getHours()} <br/>
-            {minDate.getHours()} <br/><br/><br/>
+            {minDate.getHours()} <br/><br/><br/>*/}
 
             <button onClick={getMoneySavedMonthly}> Cargar ahorro mensual (1 vez al día)</button><br/><br/>
             Dinero ahorrado este mes: {currentSave.toFixed(2)} <br/>
