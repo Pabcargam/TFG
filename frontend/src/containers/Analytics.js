@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Axios from 'axios';
-import '../styles/scrollProgressBar.css';
+import '../styles/analytics.css';
 
-const Analytics = () => {
+const Analytics = ({ isAuthenticated }) => {
 
     // --- DATABASE DATA STATES --- //
 
@@ -330,33 +332,85 @@ const Analytics = () => {
             performanceString = 'Malo';
         }
 
+
+        // --- CONTENT DEPENDING ON AUTHENTICATED CHECK --- //
+
+        const invitados = () => (
+            <Fragment>
+                <div className='progress-container'>
+                    <div className='progress-bar' id='myBar'></div>
+                </div>
+                <div className='container'>
+                    <div className='jumbotron mt-5'>
+                        <h1 className='display-4'>Tus Analíticas</h1>
+                        <p className='lead'>Conoce todos los datos relevantes de tus placas solares, desde los más simples 
+                                    como su temperatura actual hasta calculos complejos como la cantidad de energia 
+                                    recogida el día anterior y como repercute dicho dato diariamente y mensualmente 
+                                    a tu bolsillo.
+                        </p>
+                        <div className='row'>
+                            <div className='column' id='column_left'>
+                                <div className='alert'>
+                                    <strong> Antes de poder visualizar las analíticas debera iniciar sesión pulsando el siguiente botón </strong>
+                                </div>
+                            </div>
+
+                            <div className='column' id='column_right'>
+                                <Link className='btn btn-primary btn-lg' to='/login' role='button'>Iniciar Sesión</Link>    
+                            </div>
+                        </div>
+                    </div>
+                    <hr classNameName='my-4' />
+
+                    <div id='notfound'>
+                        <div className='notfound'>
+                            <div className='notfound-404'>
+                                <h1>Algo fue mal!</h1>
+                            </div>
+                            <h2>404 - Página no encontrada</h2>
+                            <p>La página solicitada puede haber sido borrada, haber sufrido un cambio de nombre o estar temporalmente no disponible.</p>
+                            <Link className='btn btn-primary btn-lg' to='/' role='button'>Ir a Home</Link>
+                        </div>
+                    </div>
+                </div>
+            </Fragment>
+        );
+    
+        const autenticados = () => (
+            <Fragment>
+                <div className='progress-container'>
+                    <div className='progress-bar' id='myBar'></div>
+                </div>
+                <div className='container'>
+                    <div className='jumbotron mt-5'>
+                        <h1 className='display-4'>Tus Analíticas</h1>
+                        <p className='lead'>Conoce todos los datos relevantes de tus placas solares, desde los más simples 
+                                    como su temperatura actual hasta calculos complejos como la cantidad de energia 
+                                    recogida el día anterior y como repercute dicho dato diariamente y mensualmente 
+                                    a tu bolsillo.
+                        </p>
+                        <button onClick={getAnalytics} className='btn btn-primary btn-lg mt-2'>Actualizar Analíticas</button>
+                        <hr classNameName='my-4' />
+                    </div>
+
+                    <div className='jumbotron mt-5'>
+                        <h1 className='display-6'>Datos de la placas solares</h1>
+                        <p className='lead'>En esta sección podrás encontrar datos recogidos en tiempo real de las placas solares.</p>
+                        
+                        <hr className='my-4' />
+                    </div>
+                </div>
+            </Fragment>
+        );
+
         
     // --- HTML CONTENT (VIEW) --- //
 
     return (
         <div id='Analiticas'>
-            <div class="progress-container">
-                <div class="progress-bar" id="myBar"></div>
-            </div>
-            <div className='container'>
-                <div className='jumbotron mt-5'>
-                    <h1 className='display-4'>Tus Analíticas</h1>
-                    <p className='lead'>Conoce todos los datos relevantes de tus placas solares, desde los más simples 
-                                    como su temperatura actual hasta calculos complejos como la cantidad de energia 
-                                    recogida el día anterior y como repercute dicho dato diariamente y mensualmente 
-                                    a tu bolsillo.
-                    </p>
-                    <button onClick={getAnalytics} className='btn btn-primary btn-lg mt-2'>Actualizar Analíticas</button>
-                    <hr classNameName='my-4' />
-                </div>
+            
+            {isAuthenticated ? autenticados() : invitados()}
 
-                <div className='jumbotron mt-5'>
-                    <h1 className='display-6'>Datos de la placas solares</h1>
-                    <p className='lead'>En esta sección podrás encontrar datos recogidos en tiempo real de las placas solares.</p>
-                    
-                    <hr className='my-4' />
-                </div>
-            </div>
 
             
             Temperatura del tanque: {innerTemp}° <br/>
@@ -388,6 +442,10 @@ const Analytics = () => {
 
         </div>
     );
-}
+};
 
-export default Analytics;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Analytics);

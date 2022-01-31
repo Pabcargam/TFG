@@ -1,0 +1,39 @@
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+  
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #039cd8;
+  width: 0%;
+}
+
+/* Left column (non_Aunthenticated) */
+#column_left {
+  float: left;
+  display: flex;
+  margin-top: 1.25%;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* Danger alert properties */
+.alert {
+  padding: 8px;
+  background-color: #fc1201; /* Red */
+  opacity: 70%;
+  color: white;
+}
+
+/* Right column (non_Aunthenticated)*/
+#column_right {
+  float: right;
+  display: flex;
+  margin-top: 1%;
+  width: fit-content;
+  height: fit-content;
+}

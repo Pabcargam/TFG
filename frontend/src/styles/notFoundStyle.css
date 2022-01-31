@@ -32,7 +32,7 @@
   .notfound .notfound-404 h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 230px;
-    margin: 0px;
+    margin-top: 50px;
     font-weight: 900;
     position: absolute;
     left: 50%;
@@ -53,7 +53,7 @@
     font-size: 24px;
     font-weight: 700;
     text-transform: uppercase;
-    margin-top: 18px;
+    margin-top: 68px;
   }
   
   .notfound p {
