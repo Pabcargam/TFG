@@ -8,6 +8,7 @@ import Signup from './containers/Signup';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import NotFound from './components/404NotFound.js';
+import Maintentance from './components/Maintenance.js';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -26,7 +27,7 @@ const operational = () => (
 );
 
 const non_operational = () => (
-    <Route exact path='/analytics' component={NotFound} />
+    <Route exact path='/analytics' component={Maintentance} />
 );
 
 const App = () => (

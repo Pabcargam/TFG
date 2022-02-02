@@ -1,0 +1,119 @@
+/* Left column (maintenance) */
+#column_left {
+    float: left;
+    display: flex;
+    margin-top: 1.25%;
+    width: fit-content;
+    height: fit-content;
+}
+  
+/* Caution alert properties */
+.alert_warning {
+    padding: 8px;
+    background-color: #ffc404fa; /* Orange */
+    border-radius: 6px;
+    opacity: 85%;
+    color: rgb(0, 0, 0);
+}
+  
+/* Right column (maintenance)*/
+#column_right {
+    float: right;
+    display: flex;
+    margin-top: 1%;
+    width: fit-content;
+    height: fit-content;
+}
+  
+
+/* MAINTENANCE BACK TEXT */
+  
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+  
+#maintenance {
+    position: relative;
+    height: 70vh;
+}
+  
+#maintenance .maintenance {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+  
+.maintenance {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+}
+  
+.maintenance .maintenance_Alert {
+    height: 280px;
+    position: relative;
+    z-index: -1;
+}
+  
+.maintenance .maintenance_Alert h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100px;
+    margin-top: 0px;
+    font-weight: 700;
+    position: absolute;
+    left: 35%;
+    -webkit-transform: translateX(-25%);
+        -ms-transform: translateX(-25%);
+            transform: translateX(-25%);
+      background: url('../assets/bg.jpg') no-repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: cover;
+    background-position: center;
+}
+   
+.maintenance h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 120px;
+}
+  
+.maintenance p {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+  
+.maintenance a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: #0046d5;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 40px;
+    color: #fff;
+    font-weight: 700;
+    -webkit-box-shadow: 0px 4px 15px -5px #0046d5;
+            box-shadow: 0px 4px 15px -5px #0046d5;
+}
+   
+@media only screen and (max-width: 767px) {
+      .maintenance .maintenance_Alert {
+        height: 142px;
+      }
+      .maintenance .maintenance h1 {
+        font-size: 112px;
+      }
+}

@@ -337,9 +337,6 @@ const Analytics = ({ isAuthenticated }) => {
 
         const invitados = () => (
             <Fragment>
-                <div className='progress-container'>
-                    <div className='progress-bar' id='myBar'></div>
-                </div>
                 <div className='container'>
                     <div className='jumbotron mt-5'>
                         <h1 className='display-4'>Tus Analíticas</h1>
@@ -350,7 +347,7 @@ const Analytics = ({ isAuthenticated }) => {
                         </p>
                         <div className='row'>
                             <div className='column' id='column_left'>
-                                <div className='alert'>
+                                <div className='alert_danger'>
                                     <strong> Antes de poder visualizar las analíticas debera iniciar sesión pulsando el siguiente botón </strong>
                                 </div>
                             </div>
@@ -362,13 +359,13 @@ const Analytics = ({ isAuthenticated }) => {
                     </div>
                     <hr classNameName='my-4' />
 
-                    <div id='notfound'>
-                        <div className='notfound'>
-                            <div className='notfound-404'>
-                                <h1>Algo fue mal!</h1>
+                    <div id='not_Authenticated'>
+                        <div className='not_Autheticated'>
+                            <div className='not_Autheticated_Alert'>
+                                <h1>Algo no funcionó correctamente!</h1>
                             </div>
-                            <h2>404 - Página no encontrada</h2>
-                            <p>La página solicitada puede haber sido borrada, haber sufrido un cambio de nombre o estar temporalmente no disponible.</p>
+                            <h2>401 - No Autorizado</h2>
+                            <p>La página solicitada requiere permisos de usuario autenticado para poder ver su contenido.</p>
                             <Link className='btn btn-primary btn-lg' to='/' role='button'>Ir a Home</Link>
                         </div>
                     </div>
