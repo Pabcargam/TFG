@@ -348,7 +348,7 @@ const Analytics = ({ isAuthenticated }) => {
                         <div className='row'>
                             <div className='column' id='column_left'>
                                 <div className='alert_danger'>
-                                    <strong> Antes de poder visualizar las analíticas debera iniciar sesión pulsando el siguiente botón </strong>
+                                    <strong> Antes de poder visualizar las analíticas debera iniciar sesión pulsando el siguiente botón. </strong>
                                 </div>
                             </div>
 
@@ -359,9 +359,9 @@ const Analytics = ({ isAuthenticated }) => {
                     </div>
                     <hr classNameName='my-4' />
 
-                    <div id='not_Authenticated'>
-                        <div className='not_Autheticated'>
-                            <div className='not_Autheticated_Alert'>
+                    <div id='notfound'>
+                        <div className='notfound'>
+                            <div className='notfound-404'>
                                 <h1>Algo no funcionó correctamente!</h1>
                             </div>
                             <h2>401 - No Autorizado</h2>
