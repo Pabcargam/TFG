@@ -172,3 +172,42 @@
       font-size: 80%;
     }
 }
+
+@media only screen and (max-height: 821px) {
+
+  #notfound .notfound {
+    top: 45%;
+  }
+  .notfound .notfound-404 {
+    height: 100px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 350%;
+    width: 110%;
+  }
+  .notfound h2 {
+    margin-top: 35%;
+  }
+}
+
+@media only screen and (max-height: 710px) {
+
+  #notfound .notfound {
+    top: 53%;
+  }
+  .notfound .notfound-404 {
+    height: 100px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 270%;
+  }
+  .notfound h2 {
+    font-size: 110%;
+    margin-top: 22%;
+    width: 92%;
+    left: 50%;
+      -webkit-transform: translateX(+1%);
+          -ms-transform: translateX(+1%);
+              transform: translateX(+1%);
+  }
+}

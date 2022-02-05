@@ -7,52 +7,52 @@ import neliumImage from '../assets/NeliumTransparente.jpg';
 
 const Navbar = ({ logout, isAuthenticated }) => {
 
-    function myFunction() {
+    /*function myFunction() {
         var x = document.getElementById("myTopnav");
         if (x.className === "topnav") {
           x.className += " responsive";
         } else {
           x.className = "topnav";
         }
-      }
+      }*/
 
     const linksInvitados = () => (
 
-        <Fragment>
+        /*<Fragment>
             <Link className='nav-link' to='/login'>Iniciar Sesión</Link>
             <Link className='nav-link' to='/signup'>Resgistrarse</Link>
-        </Fragment>
+        </Fragment>*/
 
-        /*<Fragment>
+        <Fragment>
             <li className='nav-item'>
                 <Link className='nav-link' to='/login'>Iniciar Sesión</Link>
             </li>
             <li className='nav-item'>
                 <Link className='nav-link' to='/signup'>Resgistrarse</Link>
             </li>
-        </Fragment>*/
+        </Fragment>
     );
 
     const linksAutenticados = () => (
 
-        <Fragment>
+        /*<Fragment>
             <Link className='nav-link' to='/analytics'>Analíticas</Link>
             <Link className='nav-link' to='/' onClick={logout}>Cerrar Sesión</Link>
-        </Fragment>
+        </Fragment>*/
 
-        /*<Fragment>
+        <Fragment>
             <li className='nav-item'>
                 <Link className='nav-link' to='/analytics'>Analíticas</Link>
             </li>
             <li className='nav-item'>
                 <Link className='nav-link' to='/' onClick={logout}>Cerrar Sesión</Link>
             </li>
-        </Fragment>*/
+        </Fragment>
     );
 
     return (
 
-        <div class='topnav' id='myTopnav'>
+        /*<div class='topnav' id='myTopnav'>
             <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'></link>
             <Link className='navbar-brand' to='/'><img src={neliumImage} alt='Nelium Analytics' width='200px' height='100%'/></Link>
             <Link className='nav-link' to='/'> Home </Link>
@@ -60,9 +60,9 @@ const Navbar = ({ logout, isAuthenticated }) => {
             <a href='javascript:void(0);' class='icon' onclick={myFunction}>
                 <i class="fa fa-bars"></i>
             </a>
-        </div>
+        </div>*/
 
-        /*<Fragment>
+        <Fragment>
             <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'></link>
             <nav className='navbar navbar-expand-lg navbar-dark bg-dark px-3' >
                 <Link className='navbar-brand' to='/'><img src={neliumImage} alt='Nelium Analytics' width='200px' height='100%'/></Link>
@@ -76,7 +76,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 </div>
             </nav>
             <Alert />
-        </Fragment>*/
+        </Fragment>
     );        
 };
 

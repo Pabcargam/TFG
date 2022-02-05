@@ -110,3 +110,37 @@
         margin-top: 10px;
       }
   }
+
+  @media only screen and (max-height: 821px) {
+
+    #notfound .notfound {
+      top: 45%;
+    }
+    .notfound .notfound-404 {
+      height: 100px;
+    }
+    .notfound .notfound-404 h3 {
+      font-size: 550%;
+      width: 110%;
+    }
+    .notfound h2 {
+      margin-top: 35%;
+    }
+  }
+  
+  @media only screen and (max-height: 710px) {
+  
+    #notfound .notfound {
+      top: 59%;
+    }
+    .notfound .notfound-404 {
+      height: 100px;
+    }
+    .notfound .notfound-404 h3 {
+      font-size: 370%;
+    }
+    .notfound h2 {
+      font-size: 110%;
+      margin-top: 22%;
+    }
+  }
