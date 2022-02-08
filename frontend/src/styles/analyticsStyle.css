@@ -138,7 +138,7 @@
 @media only screen and (max-width: 767px) {
 
     #notfound .notfound {
-      top: 42%;
+      top: 34%;
     }
     .notfound .notfound-404 {
       height: 100px;
@@ -152,7 +152,7 @@
     }
     .notfound h2 {
       font-size: 125%;
-      margin-top: 20%;
+      margin-top: 14%;
       width: 103%;
       left: 50%;
       -webkit-transform: translateX(+0%);
@@ -176,34 +176,35 @@
 @media only screen and (max-height: 821px) {
 
   #notfound .notfound {
-    top: 45%;
+    top: 35%;
   }
   .notfound .notfound-404 {
     height: 100px;
   }
   .notfound .notfound-404 h1 {
-    font-size: 350%;
-    width: 110%;
+    font-size: 300%;
+    width: 127%;
   }
   .notfound h2 {
-    margin-top: 35%;
+    margin-top: 12%;
   }
 }
 
-@media only screen and (max-height: 710px) {
+@media only screen and (max-height: 740px) {
 
   #notfound .notfound {
-    top: 53%;
+    top: 42%;
   }
   .notfound .notfound-404 {
     height: 100px;
   }
   .notfound .notfound-404 h1 {
-    font-size: 270%;
+    font-size: 255%;
+    width: 100%;
   }
   .notfound h2 {
     font-size: 110%;
-    margin-top: 22%;
+    margin-top: 16%;
     width: 92%;
     left: 50%;
       -webkit-transform: translateX(+1%);

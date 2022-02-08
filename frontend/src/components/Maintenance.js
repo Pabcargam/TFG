@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/maintenance.css';
+import '../styles/maintenanceStyle.css';
 
 const Application_maintenance = () => {
 

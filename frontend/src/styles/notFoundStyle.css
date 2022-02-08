@@ -122,13 +122,14 @@
     .notfound .notfound-404 h3 {
       font-size: 550%;
       width: 110%;
+      margin-top: 0%;
     }
     .notfound h2 {
       margin-top: 35%;
     }
   }
   
-  @media only screen and (max-height: 710px) {
+  @media only screen and (max-height: 740px) {
   
     #notfound .notfound {
       top: 59%;
@@ -137,7 +138,8 @@
       height: 100px;
     }
     .notfound .notfound-404 h3 {
-      font-size: 370%;
+      font-size: 470%;
+      margin-top: 10%;
     }
     .notfound h2 {
       font-size: 110%;
