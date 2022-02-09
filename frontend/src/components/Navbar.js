@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
@@ -8,79 +8,69 @@ import neliumImage from '../assets/NeliumTransparente.jpg';
 
 const Navbar = ({ logout, isAuthenticated }) => {
 
-    const responsiveNav = () => {
-        var x = document.getElementById('myNav');
-        if (x.className === 'navbar navbar-expand-lg navbar-dark bg-dark px-3') {
-          x.className += 'responsive';
-        } else {
-          x.className = 'navbar navbar-expand-lg navbar-dark bg-dark px-3';
-        }
-    };
+
+    // --- RESPONSIVE STATES --- //
+
+    const [responsiveLinks, setResponsiveLinks] = useState(true);
+
+
+    // --- LINKS AUTHENTICATED-BASED --- //
 
     const linksInvitados = () => (
 
-        /*<Fragment>
-            <Link className='nav-link' to='/login'>Iniciar Sesión</Link>
-            <Link className='nav-link' to='/signup'>Resgistrarse</Link>
-        </Fragment>*/
-
         <Fragment>
+            <Link to='/login'>Iniciar Sesión</Link>
+            <Link to='/signup'>Resgistrarse</Link>
+        </Fragment>
+
+        /*<Fragment>
             <li className='nav-item'>
                 <Link className='nav-link' to='/login'>Iniciar Sesión</Link>
             </li>
             <li className='nav-item'>
                 <Link className='nav-link' to='/signup'>Resgistrarse</Link>
             </li>
-        </Fragment>
+        </Fragment>*/
     );
 
     const linksAutenticados = () => (
 
-        /*<Fragment>
-            <Link className='nav-link' to='/analytics'>Analíticas</Link>
-            <Link className='nav-link' to='/' onClick={logout}>Cerrar Sesión</Link>
-        </Fragment>*/
-
         <Fragment>
+            <Link to='/analytics'>Analíticas</Link>
+            <Link to='/' onClick={logout}>Cerrar Sesión</Link>
+        </Fragment>
+
+        /*<Fragment>
             <li className='nav-item'>
                 <Link className='nav-link' to='/analytics'>Analíticas</Link>
             </li>
             <li className='nav-item'>
                 <Link className='nav-link' to='/' onClick={logout}>Cerrar Sesión</Link>
             </li>
-        </Fragment>
+        </Fragment>*/
     );
+
+
+    // --- HTML CONTENT --- //
 
     return (
 
-        /*<div class='topnav' id='myTopnav'>
-            <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'></link>
-            <Link className='navbar-brand' to='/'><img src={neliumImage} alt='Nelium Analytics' width='200px' height='100%'/></Link>
-            <Link className='nav-link' to='/'> Home </Link>
-            {isAuthenticated ? linksAutenticados() : linksInvitados()}
-            <a href='javascript:void(0);' class='icon' onclick={myFunction}>
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>*/
-
         <Fragment>
             <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'></link>
-            <nav className='navbar navbar-expand-lg navbar-dark bg-dark px-3' id='myNav'>
-                <Link className='navbar-brand' to='/'><img src={neliumImage} alt='Nelium Analytics' width='200px' height='100%'/></Link>
-                <div className='collapse navbar-collapse' id='navbarNav'>
-                    <ul className='navbar-nav'>
-                        <li className='nav-item active'>
-                            <Link className='nav-link' to='/'> Home </Link>
-                        </li>
-                        {isAuthenticated ? linksAutenticados() : linksInvitados()}
-                        <li className='nav-item'>
-                            <a href='javascript:void(0);' className='icon' onclick={responsiveNav}>
-                                <i class='fa fa-bars'></i>
-                            </a>
-                        </li>
-                    </ul>
+            <div className='navbar'>
+                <div className='leftSide'>
+                    <div className='neliumLink'>
+                        <Link to='/'><img src={neliumImage} alt='Nelium Analytics' width='232px' height='34px'/></Link>
+                    </div>
                 </div>
-            </nav>
+                <div className='middleSide'>
+                    <div className='links' id={responsiveLinks ? 'hidden' : ''}>
+                        <Link to='/'> Home </Link>
+                        {isAuthenticated ? linksAutenticados() : linksInvitados()}
+                    </div>
+                    <button> Responsive </button>
+                </div>
+            </div>
             <Alert />
         </Fragment>
     );        
