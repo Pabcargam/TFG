@@ -84,13 +84,31 @@
 
   .navbar .middleSide #hidden {
     position: absolute;
-    left: -480%;
-    top: 170%;
-    height: 230px;
+    left: -250%;
+    top: 150%;
+    height: 330px;
+    width: 350%;
     background-color: rgb(37, 37, 37);
+    opacity: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar .middleSide #hidden a {
+    font-size: 17px;
+    margin-right: 0px;
+    margin-top: 8px;
+
   }
 
   .navbar .middleSide .links {
     display: none;
+    padding-left: 0px;
+    max-height: 400%;
+  }
+
+  .navbar .middleSide .links a{
   }
 }

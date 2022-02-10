@@ -5,13 +5,22 @@ import { logout } from '../actions/auth';
 import Alert from './Alert';
 import '../styles/navbarStyle.css';
 import neliumImage from '../assets/NeliumTransparente.jpg';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Navbar = ({ logout, isAuthenticated }) => {
 
 
     // --- RESPONSIVE STATES --- //
 
-    const [responsiveLinks, setResponsiveLinks] = useState(true);
+    const [responsiveLinks, setResponsiveLinks] = useState(false);
+
+
+    // --- CLOSE SESSION FUNCTION --- //
+
+    const cierreSesion = () => {
+        logout();
+        setResponsiveLinks(false);
+    };
 
 
     // --- LINKS AUTHENTICATED-BASED --- //
@@ -19,8 +28,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
     const linksInvitados = () => (
 
         <Fragment>
-            <Link to='/login'>Iniciar Sesión</Link>
-            <Link to='/signup'>Resgistrarse</Link>
+            <Link to='/login' onClick={() => setResponsiveLinks(false)}>Iniciar Sesión</Link>
+            <Link to='/signup' onClick={() => setResponsiveLinks(false)}>Resgistrarse</Link>
         </Fragment>
 
         /*<Fragment>
@@ -36,8 +45,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
     const linksAutenticados = () => (
 
         <Fragment>
-            <Link to='/analytics'>Analíticas</Link>
-            <Link to='/' onClick={logout}>Cerrar Sesión</Link>
+            <Link to='/analytics' onClick={() => setResponsiveLinks(false)}>Analíticas</Link>
+            <Link to='/' onClick={cierreSesion}>Cerrar Sesión</Link>
         </Fragment>
 
         /*<Fragment>
@@ -60,15 +69,15 @@ const Navbar = ({ logout, isAuthenticated }) => {
             <div className='navbar'>
                 <div className='leftSide'>
                     <div className='neliumLink'>
-                        <Link to='/'><img src={neliumImage} alt='Nelium Analytics' width='232px' height='34px'/></Link>
+                        <Link to='/' onClick={() => setResponsiveLinks(false)}><img src={neliumImage} alt='Nelium Analytics' width='232px' height='34px'/></Link>
                     </div>
                 </div>
                 <div className='middleSide'>
                     <div className='links' id={responsiveLinks ? 'hidden' : ''}>
-                        <Link to='/'> Home </Link>
+                        <Link to='/' onClick={() => setResponsiveLinks(false)}> Home </Link>
                         {isAuthenticated ? linksAutenticados() : linksInvitados()}
                     </div>
-                    <button> Responsive </button>
+                    <button onClick={() => setResponsiveLinks(!responsiveLinks)}> <MenuIcon /> </button>
                 </div>
             </div>
             <Alert />
