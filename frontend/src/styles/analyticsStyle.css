@@ -1,3 +1,7 @@
+.body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* The progress container (grey background) */
 .progress-container {
   width: 100%;
@@ -40,7 +44,40 @@
 }
 
 
-/* NON_AUTHENTICATED BACK TEXT */
+/* AUTHENTICATED CASE */
+
+.row {
+  margin-top: 3.5%;
+  margin-bottom: 3.5%;
+}
+
+.row .col-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.row .col-4 #normalData {
+  background-color: #9ae016c0;
+  border: #000 2px solid;
+  border-radius: 14px;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.row .col-4 .Malo {
+  background-color: #fc1201c0;
+  border: #000 2px solid;
+  border-radius: 14px;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+
+/* NON_AUTHENTICATED CASE */
   
 * {
   -webkit-box-sizing: border-box;

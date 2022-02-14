@@ -394,6 +394,47 @@ const Analytics = ({ isAuthenticated }) => {
                         <h1 className='display-6'>Datos de la placas solares</h1>
                         <p className='lead'>En esta sección podrás encontrar datos recogidos en tiempo real de las placas solares.</p>
                         
+                        <div className='row'>
+                            <div className='col-4'>
+                                <div className={performanceString}>
+                                    <p className='lead'> Temperatura del tanque: </p> 
+                                    <strong> {innerTemp}° </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p className='lead'> Media de temperatura del tanque: </p> 
+                                    <strong> {meanInnerTemp}° </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p className='lead'> Temperatura de la placa: </p> 
+                                    <strong> {outterTemp}° </strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='row'>
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p className='lead'> Media de temperatura de la placa: </p> 
+                                    <strong> {meanOutterTemp}° </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p className='lead'> Diferencial de activación: </p>
+                                    <strong> {diffTrigger}° </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p className='lead'> Bombeo: </p>
+                                    <strong> {pump ? 'Activado' : 'No Activado'} </strong>
+                                </div>
+                            </div>
+                        </div>
                         <hr className='my-4' />
                     </div>
                 </div>
