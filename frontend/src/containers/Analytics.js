@@ -396,7 +396,7 @@ const Analytics = ({ isAuthenticated }) => {
                         
                         <div className='row'>
                             <div className='col-4'>
-                                <div className={performanceString}>
+                                <div id='normalData'>
                                     <p className='lead'> Temperatura del tanque: </p> 
                                     <strong> {innerTemp}° </strong>
                                 </div>
@@ -437,6 +437,93 @@ const Analytics = ({ isAuthenticated }) => {
                         </div>
                         <hr className='my-4' />
                     </div>
+
+                    <div className='jumbotron mt-5'>
+                        <h1 className='display-6'>Datos de ahorro</h1>
+                        <p className='lead'>En esta sección podrás encontrar datos de ahorro calculados para el día de ayer. </p>
+                        
+                        <div className='row'>
+                            <div className='col-6'>
+                                <div id='normalData'>
+                                    <p className='lead'> Precio de la luz (Hora actual): </p> 
+                                    <strong> {(currentLightPrice/1000).toFixed(3)} €/kWh </strong>
+                                </div>
+                            </div>
+                            <div className='col-6'>
+                                <div id='normalData'>
+                                    <p className='lead'> Precio de la luz ayer (Hora de generación): </p> 
+                                    <strong> {(lightPriceYesterdayGenTime/1000).toFixed(3)} €/kWh </strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className='row'>
+                            <div className='col-6'>
+                                <div className={performanceString}>
+                                    <p className='lead'> Energía ahorrada ayer (Para tanque de 300L): </p> 
+                                    <strong> {energySaved.toFixed(3)} kW </strong>
+                                </div>
+                            </div>
+                            <div className='col-6'>
+                                <div className={performanceString}>
+                                    <p className='lead'> Dinero ahorrado durante el dia de ayer (Para el precio de generación a las 12 del mediodía): </p> 
+                                    <strong> {moneySaved.toFixed(2)} € </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <hr className='my-4' />
+                    </div>
+
+                {/* <div className='jumbotron mt-5'>
+                        <h1 className='display-6'>Datos de ahorro mensual</h1>
+                        <p className='lead'>En esta sección podrás encontrar datos del ahorro mensual realizado a lo largo del mes, así como el ahorro del mes anterior. </p>
+                        
+                        <div className='row'>
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p className='lead'> Dinero ahorrado este mes: </p> 
+                                    <strong> {currentSave.toFixed(2)} € </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p className='lead'> Dinero ahorrado el mes pasado: </p> 
+                                    <strong> {lastMonthSave.toFixed(2)} € </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <button onClick={getMoneySavedMonthly} className='btn btn-success btn-lg'> Cargar ahorro mensual (1 vez al día)</button>
+                            </div>
+                        </div>
+                        <hr className='my-4' />
+                    </div> */}
+
+                    <div className='jumbotron mt-5'>
+                        <h1 className='display-6'>Datos de rendimiento</h1>
+                        <p className='lead'>En esta sección podrás encontrar datos con respecto al rendimiento de tus placas solares. </p>
+                        
+                        <div className='row'>
+                            <div className='col-4'>
+                                <div className={performanceString}>
+                                    <p className='lead'> Rendimiento de las placas solares: </p> 
+                                    <strong> {performanceString} </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <div className={performanceString}>
+                                    <p className='lead'> Rendimiento esperado: </p> 
+                                    <strong> {expectedPerformance.toFixed(3)} kW/h </strong>
+                                </div>
+                            </div>
+                            <div className='col-4'>
+                                <div className={performanceString}>
+                                    <p className='lead'> Rendimiento real: </p> 
+                                    <strong> {realPerformance.toFixed(3)} kW/h </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <hr className='my-4' />
+                    </div>
                 </div>
             </Fragment>
         );
@@ -448,35 +535,6 @@ const Analytics = ({ isAuthenticated }) => {
         <div id='Analiticas'>
             
             {isAuthenticated ? autenticados() : invitados()}
-
-
-            
-            Temperatura del tanque: {innerTemp}° <br/>
-            Media de temperatura del tanque: {meanInnerTemp}° <br/>
-            Temperatura de la placa: {outterTemp}°<br/>
-            Media de temperatura de la placa: {meanOutterTemp}° <br/>
-            Diferencial de activación: {diffTrigger}° <br/>
-            Bombeo: {pump ? 'Activado' : 'No Activado'}<br/><br/>
-
-            Precio de la luz (Hora actual): {(currentLightPrice/1000).toFixed(3)} €/kWh <br/><br/>
-
-            Energía ahorrada ayer (Para tanque de 300L): {energySaved.toFixed(3)} kW <br/><br/>
-
-            Dinero ahorrado durante el dia de ayer (Para el precio de generación a las 12 del mediodía): {moneySaved.toFixed(2)} € <br/><br/>
-
-            Rendimiento de las placas solares: {performanceString} <br/>
-            
-            {/*{tankDiff}° <br/> */}
-            Rendimiento esperado: {expectedPerformance.toFixed(3)} kW/h <br/>
-            Rendimiento real: {realPerformance.toFixed(3)} kW/h <br/><br/>
-
-            {/*{timeDiff} <br/>
-            {maxDate.getHours()} <br/>
-            {minDate.getHours()} <br/><br/><br/>*/}
-
-            <button onClick={getMoneySavedMonthly}> Cargar ahorro mensual (1 vez al día)</button><br/><br/>
-            Dinero ahorrado este mes: {currentSave.toFixed(2)} <br/>
-            Dinero ahorrado el mes pasado: {lastMonthSave.toFixed(2)}
 
         </div>
     );

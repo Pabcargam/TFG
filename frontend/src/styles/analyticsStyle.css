@@ -51,15 +51,15 @@
   margin-bottom: 3.5%;
 }
 
-.row .col-4 {
+.row .col-4, .row .col-6 {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
-.row .col-4 #normalData {
-  background-color: #9ae016c0;
+.row .col-4 #normalData, .row .col-6 #normalData {
+  background-color: #009efa;
   border: #000 2px solid;
   border-radius: 14px;
   padding: 5px;
@@ -67,8 +67,26 @@
   padding-right: 8px;
 }
 
-.row .col-4 .Malo {
+.row .col-4 .Malo, .row .col-6 .Malo {
   background-color: #fc1201c0;
+  border: #000 2px solid;
+  border-radius: 14px;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.row .col-4 .Estandar, .row .col-6 .Estandar {
+  background-color: #fcb901c0;
+  border: #000 2px solid;
+  border-radius: 14px;
+  padding: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.row .col-4 .Bueno, .row .col-6 .Bueno {
+  background-color: #9ae016c0;
   border: #000 2px solid;
   border-radius: 14px;
   padding: 5px;
