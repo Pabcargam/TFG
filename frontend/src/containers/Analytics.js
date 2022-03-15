@@ -112,37 +112,37 @@ const Analytics = ({ isAuthenticated }) => {
         // --- BODY DATABASE API REQUESTS --- //
 
         const inner_temp = {
-            "query": "SELECT inside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
+            "query": "SELECT inside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const mean_inner_temp = {
-            "query": "SELECT MEAN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 6h",
+            "query": "SELECT MEAN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 6h",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const outter_temp = {
-            "query": "SELECT outside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
+            "query": "SELECT outside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const mean_outter_temp = {
-            "query": "SELECT MEAN(outside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 6h",
+            "query": "SELECT MEAN(outside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 6h",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const diff_trigger = {
-            "query": "SELECT diff FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
+            "query": "SELECT diff FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const pump_bool = {
-            "query": "SELECT pump FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
+            "query": "SELECT pump FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
@@ -151,13 +151,13 @@ const Analytics = ({ isAuthenticated }) => {
             // --- BODY ENERGY SAVE & PERFORMANCE API REQUESTS --- //
 
             const max_tank_temp = {
-                "query": "SELECT MAX(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
+                "query": "SELECT MAX(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
                 "type": "influxql",
                 "bucket": "sensors"
             };
 
             const min_tank_temp = {
-                "query": "SELECT MIN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
+                "query": "SELECT MIN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
                 "type": "influxql",
                 "bucket": "sensors"
             };
@@ -341,9 +341,8 @@ const Analytics = ({ isAuthenticated }) => {
                     <div className='jumbotron mt-5'>
                         <h1 className='display-4'>Tus Analíticas</h1>
                         <p className='lead'>Conoce todos los datos relevantes de tus placas solares, desde los más simples 
-                                    como su temperatura actual hasta calculos complejos como la cantidad de energia 
-                                    recogida el día anterior y como repercute dicho dato diariamente y mensualmente 
-                                    a tu bolsillo.
+                                    como su temperatura actual hasta cálculos complejos como la cantidad de energía 
+                                    recogida el día anterior y como repercute dicho dato diariamente a tu bolsillo.
                         </p>
                         <div className='row'>
                             <div className='column' id='column_left'>
@@ -375,16 +374,12 @@ const Analytics = ({ isAuthenticated }) => {
     
         const autenticados = () => (
             <Fragment>
-                <div className='progress-container'>
-                    <div className='progress-bar' id='myBar'></div>
-                </div>
                 <div className='container'>
                     <div className='jumbotron mt-5'>
                         <h1 className='display-4'>Tus Analíticas</h1>
                         <p className='lead'>Conoce todos los datos relevantes de tus placas solares, desde los más simples 
-                                    como su temperatura actual hasta calculos complejos como la cantidad de energia 
-                                    recogida el día anterior y como repercute dicho dato diariamente y mensualmente 
-                                    a tu bolsillo.
+                                    como su temperatura actual hasta cálculos complejos como la cantidad de energía 
+                                    recogida el día anterior y como repercute dicho dato diariamente a tu bolsillo.
                         </p>
                         <button onClick={getAnalytics} className='btn btn-primary btn-lg mt-2'>Actualizar Analíticas</button>
                         <hr classNameName='my-4' />
@@ -392,25 +387,27 @@ const Analytics = ({ isAuthenticated }) => {
 
                     <div className='jumbotron mt-5'>
                         <h1 className='display-6'>Datos de la placas solares</h1>
-                        <p className='lead'>En esta sección podrás encontrar datos recogidos en tiempo real de las placas solares.</p>
+                        <p className='lead'>En esta sección podrás encontrar datos recogidos de las placas solares en tiempo real.</p>
                         
                         <div className='row'>
                             <div className='col-4'>
                                 <div id='normalData'>
-                                    <p className='lead'> Temperatura del tanque: </p> 
-                                    <strong> {innerTemp}° </strong>
+                                    <p> Temperatura del tanque: </p> 
+                                    <strong id='dato'> {innerTemp}° </strong>
                                 </div>
                             </div>
+                        
                             <div className='col-4'>
                                 <div id='normalData'>
-                                    <p className='lead'> Media de temperatura del tanque: </p> 
+                                    <p> Temperatura media del tanque: </p> 
                                     <strong> {meanInnerTemp}° </strong>
                                 </div>
                             </div>
+
                             <div className='col-4'>
                                 <div id='normalData'>
-                                    <p className='lead'> Temperatura de la placa: </p> 
-                                    <strong> {outterTemp}° </strong>
+                                    <p> Diferencial de activación: </p>
+                                    <strong> {diffTrigger}° </strong>
                                 </div>
                             </div>
                         </div>
@@ -418,19 +415,21 @@ const Analytics = ({ isAuthenticated }) => {
                         <div className='row'>
                             <div className='col-4'>
                                 <div id='normalData'>
-                                    <p className='lead'> Media de temperatura de la placa: </p> 
+                                    <p> Temperatura de la placa: </p> 
+                                    <strong> {outterTemp}° </strong>
+                                </div>
+                            </div>
+
+                            <div className='col-4'>
+                                <div id='normalData'>
+                                    <p> Temperatura media de la placa: </p> 
                                     <strong> {meanOutterTemp}° </strong>
                                 </div>
                             </div>
+
                             <div className='col-4'>
                                 <div id='normalData'>
-                                    <p className='lead'> Diferencial de activación: </p>
-                                    <strong> {diffTrigger}° </strong>
-                                </div>
-                            </div>
-                            <div className='col-4'>
-                                <div id='normalData'>
-                                    <p className='lead'> Bombeo: </p>
+                                    <p> Estado de la bomba: </p>
                                     <strong> {pump ? 'Activado' : 'No Activado'} </strong>
                                 </div>
                             </div>
@@ -440,33 +439,34 @@ const Analytics = ({ isAuthenticated }) => {
 
                     <div className='jumbotron mt-5'>
                         <h1 className='display-6'>Datos de ahorro</h1>
-                        <p className='lead'>En esta sección podrás encontrar datos de ahorro calculados para el día de ayer. </p>
+                        <p className='lead'>En esta sección podrás encontrar datos de ahorro del día anterior calculados en base al precio de la luz generado 
+                                    en ese periodo, así como el precio de la misma en el momento actual. </p>
                         
                         <div className='row'>
                             <div className='col-6'>
                                 <div id='normalData'>
-                                    <p className='lead'> Precio de la luz (Hora actual): </p> 
+                                    <p> Precio de la luz (Hora actual): </p> 
                                     <strong> {(currentLightPrice/1000).toFixed(3)} €/kWh </strong>
                                 </div>
                             </div>
                             <div className='col-6'>
-                                <div id='normalData'>
-                                    <p className='lead'> Precio de la luz ayer (Hora de generación): </p> 
-                                    <strong> {(lightPriceYesterdayGenTime/1000).toFixed(3)} €/kWh </strong>
+                                <div className={performanceString}>
+                                    <p> Energía ahorrada ayer: </p> 
+                                    <strong> {energySaved.toFixed(3)} kW </strong>
                                 </div>
                             </div>
                         </div>
                         
                         <div className='row'>
                             <div className='col-6'>
-                                <div className={performanceString}>
-                                    <p className='lead'> Energía ahorrada ayer (Para tanque de 300L): </p> 
-                                    <strong> {energySaved.toFixed(3)} kW </strong>
+                                <div id='normalData'>
+                                    <p> Precio de la luz día anterior: </p> 
+                                    <strong> {(lightPriceYesterdayGenTime/1000).toFixed(3)} €/kWh </strong>
                                 </div>
                             </div>
                             <div className='col-6'>
                                 <div className={performanceString}>
-                                    <p className='lead'> Dinero ahorrado durante el dia de ayer (Para el precio de generación a las 12 del mediodía): </p> 
+                                    <p> Dinero ahorrado ayer: </p> 
                                     <strong> {moneySaved.toFixed(2)} € </strong>
                                 </div>
                             </div>
@@ -505,19 +505,19 @@ const Analytics = ({ isAuthenticated }) => {
                         <div className='row'>
                             <div className='col-4'>
                                 <div className={performanceString}>
-                                    <p className='lead'> Rendimiento de las placas solares: </p> 
+                                    <p> Rendimiento placas solares: </p> 
                                     <strong> {performanceString} </strong>
                                 </div>
                             </div>
                             <div className='col-4'>
                                 <div className={performanceString}>
-                                    <p className='lead'> Rendimiento esperado: </p> 
+                                    <p> Rendimiento esperado: </p> 
                                     <strong> {expectedPerformance.toFixed(3)} kW/h </strong>
                                 </div>
                             </div>
                             <div className='col-4'>
                                 <div className={performanceString}>
-                                    <p className='lead'> Rendimiento real: </p> 
+                                    <p> Rendimiento real: </p> 
                                     <strong> {realPerformance.toFixed(3)} kW/h </strong>
                                 </div>
                             </div>

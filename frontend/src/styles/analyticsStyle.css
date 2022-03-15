@@ -59,39 +59,82 @@
 }
 
 .row .col-4 #normalData, .row .col-6 #normalData {
-  background-color: #009efa;
-  border: #000 2px solid;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 400;
   border-radius: 14px;
   padding: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.row .col-4 strong, .row .col-6 strong {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
   padding-left: 8px;
   padding-right: 8px;
+  color: black;
 }
 
 .row .col-4 .Malo, .row .col-6 .Malo {
-  background-color: #fc1201c0;
-  border: #000 2px solid;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 400;
   border-radius: 14px;
   padding: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.row .col-4 .Malo strong, .row .col-6 .Malo strong {
+  background-color: red;
+  border-radius: 14px;
+  padding: 0.6px;
   padding-left: 8px;
   padding-right: 8px;
+  color: black;
 }
 
 .row .col-4 .Estandar, .row .col-6 .Estandar {
-  background-color: #fcb901c0;
-  border: #000 2px solid;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 400;
   border-radius: 14px;
   padding: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.row .col-4 .Estandar strong, .row .col-6 .Estandar strong {
+  background-color: rgb(238, 108, 1);
+  border-radius: 14px;
+  padding: 0.6px;
   padding-left: 8px;
   padding-right: 8px;
+  color: black;
 }
 
 .row .col-4 .Bueno, .row .col-6 .Bueno {
-  background-color: #9ae016c0;
-  border: #000 2px solid;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 400;
   border-radius: 14px;
   padding: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.row .col-4 .Bueno strong, .row .col-6 .Bueno strong {
+  background-color: rgb(2, 170, 2);
+  border-radius: 14px;
+  padding: 0.6px;
   padding-left: 8px;
   padding-right: 8px;
+  color: black;
 }
 
 
