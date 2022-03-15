@@ -1,26 +1,35 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 import Alert from './Alert';
+import '../styles/navbarStyle.css';
 import neliumImage from '../assets/NeliumTransparente.jpg';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Navbar = ({ logout, isAuthenticated }) => {
 
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-          x.className += " responsive";
-        } else {
-          x.className = "topnav";
-        }
-      }
+
+    // --- RESPONSIVE STATES --- //
+
+    const [responsiveLinks, setResponsiveLinks] = useState(false);
+
+
+    // --- CLOSE SESSION FUNCTION --- //
+
+    const cierreSesion = () => {
+        logout();
+        setResponsiveLinks(false);
+    };
+
+
+    // --- LINKS AUTHENTICATED-BASED --- //
 
     const linksInvitados = () => (
 
         <Fragment>
-            <Link className='nav-link' to='/login'>Iniciar Sesión</Link>
-            <Link className='nav-link' to='/signup'>Resgistrarse</Link>
+            <Link to='/login' onClick={() => setResponsiveLinks(false)}>Iniciar Sesión</Link>
+            <Link to='/signup' onClick={() => setResponsiveLinks(false)}>Resgistrarse</Link>
         </Fragment>
 
         /*<Fragment>
@@ -36,8 +45,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
     const linksAutenticados = () => (
 
         <Fragment>
-            <Link className='nav-link' to='/analytics'>Analíticas</Link>
-            <Link className='nav-link' to='/' onClick={logout}>Cerrar Sesión</Link>
+            <Link to='/analytics' onClick={() => setResponsiveLinks(false)}>Analíticas</Link>
+            <Link to='/' onClick={cierreSesion}>Cerrar Sesión</Link>
         </Fragment>
 
         /*<Fragment>
@@ -50,33 +59,29 @@ const Navbar = ({ logout, isAuthenticated }) => {
         </Fragment>*/
     );
 
+
+    // --- HTML CONTENT --- //
+
     return (
 
-        <div class='topnav' id='myTopnav'>
+        <Fragment>
             <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'></link>
-            <Link className='navbar-brand' to='/'><img src={neliumImage} alt='Nelium Analytics' width='200px' height='100%'/></Link>
-            <Link className='nav-link' to='/'> Home </Link>
-            {isAuthenticated ? linksAutenticados() : linksInvitados()}
-            <a href='javascript:void(0);' class='icon' onclick={myFunction}>
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-
-        /*<Fragment>
-            <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'></link>
-            <nav className='navbar navbar-expand-lg navbar-dark bg-dark px-3' >
-                <Link className='navbar-brand' to='/'><img src={neliumImage} alt='Nelium Analytics' width='200px' height='100%'/></Link>
-                <div className='collapse navbar-collapse' id='navbarNav'>
-                    <ul className='navbar-nav'>
-                        <li className='nav-item active'>
-                            <Link className='nav-link' to='/'> Home </Link>
-                        </li>
-                        {isAuthenticated ? linksAutenticados() : linksInvitados()}
-                    </ul>
+            <div className='navbar'>
+                <div className='leftSide'>
+                    <div className='neliumLink'>
+                        <Link to='/' onClick={() => setResponsiveLinks(false)}><img src={neliumImage} alt='Nelium Analytics' width='232px' height='34px'/></Link>
+                    </div>
                 </div>
-            </nav>
+                <div className='middleSide'>
+                    <div className='links' id={responsiveLinks ? 'hidden' : ''}>
+                        <Link to='/' onClick={() => setResponsiveLinks(false)}> Home </Link>
+                        {isAuthenticated ? linksAutenticados() : linksInvitados()}
+                    </div>
+                    <button onClick={() => setResponsiveLinks(!responsiveLinks)}> <MenuIcon /> </button>
+                </div>
+            </div>
             <Alert />
-        </Fragment>*/
+        </Fragment>
     );        
 };
 

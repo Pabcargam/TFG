@@ -1,0 +1,114 @@
+.navbar {
+  background-color: rgb(37, 37, 37);
+  width: 100%;
+  height: 75px;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+}
+
+.navbar .leftSide {
+  flex: 100%;
+  display: flex;
+  justify-content: left;
+}
+
+.navbar .leftSide .neliumLink {
+  height: 100%;
+  z-index: +1;
+  position:relative;
+}
+
+.navbar .leftSide .neliumLink a{
+  padding-left: 18px;
+}
+
+.navbar .middleSide {
+  position: absolute;
+}
+
+.navbar .middleSide button {
+  display: none;
+}
+
+.navbar .middleSide #hidden {
+  display: flex;
+}
+
+.navbar .middleSide .links {
+  max-height: 75px;
+  padding-left: 270px;
+}
+
+.navbar .middleSide .links a{
+  text-decoration: none;
+  color: white;
+  opacity: 60%;
+  font-size: 19.7px;
+  margin-left: 28px;
+}
+
+.navbar .middleSide .links a:hover{
+  color: #0076BA;
+  opacity: 100%;
+}
+
+@media only screen and (max-width: 660px) {
+
+  .navbar .leftSide {
+    flex: 70%;
+    display: flex;
+    justify-content: left;
+  }
+
+  .navbar .leftSide .neliumLink a {
+    padding-left: 10px;
+  }
+
+  .navbar .leftSide .neliumLink a img {
+    height: 24px;
+    width: 160px;
+  }
+
+  .navbar .middleSide {
+    flex: 30%;
+    position: relative;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-right: 10px;
+  }
+
+  .navbar .middleSide button {
+    display: flex;
+  }
+
+  .navbar .middleSide #hidden {
+    position: absolute;
+    left: -250%;
+    top: 150%;
+    height: 330px;
+    width: 350%;
+    background-color: rgb(37, 37, 37);
+    opacity: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar .middleSide #hidden a {
+    font-size: 17px;
+    margin-right: 0px;
+    margin-top: 8px;
+
+  }
+
+  .navbar .middleSide .links {
+    display: none;
+    padding-left: 0px;
+    max-height: 400%;
+  }
+
+  .navbar .middleSide .links a{
+  }
+}

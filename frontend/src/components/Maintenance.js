@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/maintenance.css';
+import '../styles/maintenanceStyle.css';
 
 const Application_maintenance = () => {
 
@@ -12,12 +12,20 @@ const Application_maintenance = () => {
     const [seconds, setSeconds] = useState(0);
 
 
+    // --- DATE AND TIME VARIABLES --- //
+
+    var today = new Date();
+    today.setHours(1);
+    today.setMinutes(0);
+    today.setSeconds(0);
+
+
     // --- MAINTENANCE COUNTDOWN --- //
 
     const getCountdown = () => {
 
         // Set the date we're counting down to
-        var countDownDate = new Date('Jan 5, 2050 01:00:00').getTime();
+        var countDownDate = today.getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {
@@ -36,12 +44,14 @@ const Application_maintenance = () => {
         var secondsCalculation = Math.floor((distance % (1000 * 60)) / 1000);
         setSeconds(secondsCalculation);
 
-        /* If the count down is finished, refresh the page
+        // If the count down is finished, refresh the page
         if (distance < 0) {
             clearInterval(x);
+            setHours(0);
+            setMinutes(0);
+            setSeconds(0);
             window.location.reload(true);
         }
-        */
 
         // Update the count down every 1 second
         }, 1000);
