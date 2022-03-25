@@ -112,37 +112,37 @@ const Analytics = ({ isAuthenticated }) => {
         // --- BODY DATABASE API REQUESTS --- //
 
         const inner_temp = {
-            "query": "SELECT inside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
+            "query": "SELECT inside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const mean_inner_temp = {
-            "query": "SELECT MEAN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 6h",
+            "query": "SELECT MEAN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 6h",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const outter_temp = {
-            "query": "SELECT outside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
+            "query": "SELECT outside FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const mean_outter_temp = {
-            "query": "SELECT MEAN(outside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 6h",
+            "query": "SELECT MEAN(outside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 6h",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const diff_trigger = {
-            "query": "SELECT diff FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
+            "query": "SELECT diff FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
 
         const pump_bool = {
-            "query": "SELECT pump FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time > now() - 2m",
+            "query": "SELECT pump FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time > now() - 2m",
             "type": "influxql",
             "bucket": "sensors"
             };
@@ -151,13 +151,13 @@ const Analytics = ({ isAuthenticated }) => {
             // --- BODY ENERGY SAVE & PERFORMANCE API REQUESTS --- //
 
             const max_tank_temp = {
-                "query": "SELECT MAX(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
+                "query": "SELECT MAX(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
                 "type": "influxql",
                 "bucket": "sensors"
             };
 
             const min_tank_temp = {
-                "query": "SELECT MIN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/1' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
+                "query": "SELECT MIN(inside) FROM mqtt_consumer WHERE topic = 'ivanlab/solaris/S/2' AND time >= now() - " + currentHour + "h - 1d AND time <= now() + " + lastHour + "- 1d",
                 "type": "influxql",
                 "bucket": "sensors"
             };
