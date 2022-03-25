@@ -393,7 +393,7 @@ const Analytics = ({ isAuthenticated }) => {
                             <div className='col-4'>
                                 <div id='normalData'>
                                     <p> Temperatura del tanque: </p> 
-                                    <strong id='dato'> {innerTemp}° </strong>
+                                    <strong id='innerTemp'> {innerTemp}° </strong>
                                 </div>
                             </div>
                         
@@ -407,7 +407,7 @@ const Analytics = ({ isAuthenticated }) => {
                             <div className='col-4'>
                                 <div id='normalData'>
                                     <p> Diferencial de activación: </p>
-                                    <strong> {diffTrigger}° </strong>
+                                    <strong id='diffTrigger'> {diffTrigger}° </strong>
                                 </div>
                             </div>
                         </div>
@@ -416,7 +416,7 @@ const Analytics = ({ isAuthenticated }) => {
                             <div className='col-4'>
                                 <div id='normalData'>
                                     <p> Temperatura de la placa: </p> 
-                                    <strong> {outterTemp}° </strong>
+                                    <strong id='outterTemp'> {outterTemp}° </strong>
                                 </div>
                             </div>
 
@@ -446,13 +446,13 @@ const Analytics = ({ isAuthenticated }) => {
                             <div className='col-6'>
                                 <div id='normalData'>
                                     <p> Precio de la luz (Hora actual): </p> 
-                                    <strong> {(currentLightPrice/1000).toFixed(3)} €/kWh </strong>
+                                    <strong id='todayLightPrice'> {(currentLightPrice/1000).toFixed(3)} €/kWh </strong>
                                 </div>
                             </div>
                             <div className='col-6'>
                                 <div className={performanceString}>
                                     <p> Energía ahorrada ayer: </p> 
-                                    <strong> {energySaved.toFixed(3)} kW </strong>
+                                    <strong id='energySaved'> {energySaved.toFixed(3)} kW </strong>
                                 </div>
                             </div>
                         </div>
@@ -512,13 +512,13 @@ const Analytics = ({ isAuthenticated }) => {
                             <div className='col-4'>
                                 <div className={performanceString}>
                                     <p> Rendimiento esperado: </p> 
-                                    <strong> {expectedPerformance.toFixed(3)} kW/h </strong>
+                                    <strong id='expectedPerformance'> {expectedPerformance.toFixed(3)} kW/h </strong>
                                 </div>
                             </div>
                             <div className='col-4'>
                                 <div className={performanceString}>
                                     <p> Rendimiento real: </p> 
-                                    <strong> {realPerformance.toFixed(3)} kW/h </strong>
+                                    <strong id='realPerformance'> {realPerformance.toFixed(3)} kW/h </strong>
                                 </div>
                             </div>
                         </div>
