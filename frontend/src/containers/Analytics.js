@@ -85,7 +85,7 @@ const Analytics = ({ isAuthenticated }) => {
         const headersDB = {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Token NCE3u234ica0eEvRMtYliVMqSdaMlrFeZ_aQuKUWW55JMTfQN08-ItlJBD8wOmKYdweQH37c_5L7V-CdDLAuAw=='
+                'Authorization': 'Token P-J2pTVDOg45cwk9pySecJ1ZLMP5Bw4Krnydc4JHCB1AfND82PEoGXsTWfgFBqx6sarSvdJg3uF3IctH3Ps1qw=='
             }
         };
 
