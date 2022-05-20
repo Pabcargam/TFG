@@ -28,12 +28,14 @@ SECRET_KEY = 'django-insecure-id5z)yc1f%!)2q)_g0!8%4pj=)jb+7@rgh5o6v!q@a*37$o5e=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pablo-dev.ivanlab.lan', 'localhost']
+ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS: True
 
 # Hosts permitidos para hacer peticiones al backend
-CORS_ALLOWED_ORIGINS = [ 
-    "http://pablo-dev.ivanlab.lan:3000"
-]
+#CORS_ALLOWED_ORIGINS = [ 
+#    "http://pablo-dev.ivanlab.lan:3000"
+#]
+
 
 # Application definition
 
