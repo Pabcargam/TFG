@@ -152,7 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Email Domain and Site Name configuration
 
-DOMAIN = ('pablo-dev.ivanlab.lan:3000') 
+DOMAIN = ('tfg.local:3000') 
 SITE_NAME = ('Nelium Analytics') 
 
 

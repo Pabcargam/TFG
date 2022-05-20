@@ -165,42 +165,42 @@ const Analytics = ({ isAuthenticated }) => {
 
         // --- DATABASE API REQUESTS --- //
 
-        Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', inner_temp, headersDB).then(
+        Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', inner_temp, headersDB).then(
             (response) => {
                 // console.log(response);
                 setInnerTemp(response.data.results[0].series[0].values[0][1]);
             }
         );
 
-        Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', mean_inner_temp, headersDB).then(
+        Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', mean_inner_temp, headersDB).then(
             (response) => {
                 // console.log(response);
                 setMeanInnerTemp(response.data.results[0].series[0].values[0][1].toFixed(1));
             }
         );
 
-        Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', outter_temp, headersDB).then(
+        Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', outter_temp, headersDB).then(
             (response) => {
                 // console.log(response);
                 setOutterTemp(response.data.results[0].series[0].values[0][1]);
             }
         );
 
-        Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', mean_outter_temp, headersDB).then(
+        Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', mean_outter_temp, headersDB).then(
             (response) => {
                 // console.log(response);
                 setMeanOutterTemp(response.data.results[0].series[0].values[0][1].toFixed(1));
             }
         );
 
-        Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', diff_trigger, headersDB).then(
+        Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', diff_trigger, headersDB).then(
             (response) => {
                 // console.log(response);
                 setDiffTrigger(response.data.results[0].series[0].values[0][1]);
             }
         );
 
-        Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', pump_bool, headersDB).then(
+        Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', pump_bool, headersDB).then(
             (response) => {
                 // console.log(response);
                 setPump(response.data.results[0].series[0].values[0][1]);
@@ -210,7 +210,7 @@ const Analytics = ({ isAuthenticated }) => {
 
             // --- ENERGY SAVE & PERFORMANCE API REQUESTS --- //
 
-            Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', max_tank_temp, headersDB).then(
+            Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', max_tank_temp, headersDB).then(
                 (response) => {
                     // console.log(response);
                     setmaxTankTemp(response.data.results[0].series[0].values[0][1]);
@@ -218,7 +218,7 @@ const Analytics = ({ isAuthenticated }) => {
                 }
             );
 
-            Axios.post('http://pablo-dev.ivanlab.lan:8086/api/v2/query?org=TFG_sensors', min_tank_temp, headersDB).then(
+            Axios.post('http://tfg.local:8086/api/v2/query?org=TFG_sensors', min_tank_temp, headersDB).then(
                 (response) => {
                     // console.log(response);
                     setMinTankTemp(response.data.results[0].series[0].values[0][1]);
