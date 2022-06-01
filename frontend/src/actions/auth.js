@@ -153,7 +153,7 @@ export const verify = (uid, token) => async dispatch => {
     const body = JSON.stringify({ uid, token });
 
     try {
-        await axios.post(`http://tfg.local:8080/http://backend/auth:8000/users/activation/`, body, config);
+        await axios.post(`http://tfg.local:8080/http://backend:8000/auth/users/activation/`, body, config);
 
         dispatch({
             type: ACTIVATION_SUCCESS,
